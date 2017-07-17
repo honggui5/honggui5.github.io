@@ -1,0 +1,671 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="#JAVA学习笔记 泛型
+
+泛型的意义1.使同一套代码可以应对多种不同的类型2.给编译期增加类型检查，类型错误在编译期就能识别出来
+  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The palest ink">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/JAVA学习笔记_泛型/index.html">
+<meta property="og:site_name" content="The palest ink">
+<meta property="og:description" content="#JAVA学习笔记 泛型
+
+泛型的意义1.使同一套代码可以应对多种不同的类型2.给编译期增加类型检查，类型错误在编译期就能识别出来
+  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public">
+<meta property="og:image" content="http://yoursite.com/file:///D:\Hexo\picture\add.png">
+<meta property="og:updated_time" content="2017-07-17T15:13:16.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The palest ink">
+<meta name="twitter:description" content="#JAVA学习笔记 泛型
+
+泛型的意义1.使同一套代码可以应对多种不同的类型2.给编译期增加类型检查，类型错误在编译期就能识别出来
+  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667public">
+<meta name="twitter:image" content="http://yoursite.com/file:///D:\Hexo\picture\add.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/17/JAVA学习笔记_泛型/"/>
+
+
+
+
+
+  <title>  | The palest ink </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The palest ink</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/JAVA学习笔记_泛型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The palest ink">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T15:51:12+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#JAVA学习笔记 泛型</p>
+<ul>
+<li><p><strong>泛型的意义</strong><br><br>1.使同一套代码可以应对多种不同的类型<br><br>2.给编译期增加类型检查，类型错误在编译期就能识别出来<br></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGenerics</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> length;</div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">        E items;</div><div class="line">        Node&lt;E&gt; next;</div><div class="line">        Node() &#123; </div><div class="line">            items = <span class="keyword">null</span>;</div><div class="line">            next = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        Node(E item, Node&lt;E&gt; nextNode) &#123;</div><div class="line">            items = item;</div><div class="line">            next = nextNode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">end</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> items ==<span class="keyword">null</span> &amp;&amp; next == <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Node&lt;T&gt; top = <span class="keyword">new</span> Node&lt;T&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T item)</span> </span>&#123;</div><div class="line">        top = <span class="keyword">new</span> Node&lt;T&gt;(item,top);</div><div class="line">        length++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        T result = top.items;</div><div class="line">        <span class="keyword">if</span>(!top.end()) &#123;</div><div class="line">         top = top.next;</div><div class="line">         length--;</div><div class="line">     &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> length == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        TestGenerics&lt;String&gt; generics = <span class="keyword">new</span> TestGenerics&lt;String&gt;();</div><div class="line">        TestGenerics&lt;Integer&gt; integerGenerics = <span class="keyword">new</span> TestGenerics&lt;Integer&gt;();</div><div class="line">        String str = <span class="string">"it is ok"</span>;</div><div class="line">        <span class="keyword">int</span>[] number = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</div><div class="line">        <span class="keyword">for</span> (String string:str.split(<span class="string">" "</span>)</div><div class="line">             ) &#123;</div><div class="line">            generics.push(string);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (Integer i:number) &#123;</div><div class="line">            integerGenerics.push(i);</div><div class="line">        &#125;</div><div class="line">        String s;</div><div class="line">        <span class="keyword">while</span>((s = generics.pop()) != <span class="keyword">null</span>) &#123;</div><div class="line">            System.out.println(s);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!integerGenerics.isEmpty()) &#123;</div><div class="line">            System.out.println(integerGenerics.pop());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">ok</div><div class="line">is</div><div class="line">it</div><div class="line">6</div><div class="line">5</div><div class="line">4</div><div class="line">3</div><div class="line">2</div><div class="line">1*/</div></pre></td></tr></table></figure>
+<p>  这是一个泛型的简单例子，Testgenerics可以使用与String和Integer,注意，泛型不能接受基本类型作为类型参数。<br></p>
+</li>
+<li><p><strong>泛型方法</strong><br><br>上一个是泛型类的例子，还有泛型方法</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGenericsFunc</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">String <span class="title">showName</span><span class="params">(T a)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> a.getClass().getName();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        TestGenericsFunc test = <span class="keyword">new</span> TestGenericsFunc();</div><div class="line">        System.out.println(test.showName(<span class="keyword">new</span> Oranges()));</div><div class="line">        System.out.println(test.showName(<span class="keyword">new</span> Banana()));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Oranges</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Banana</span> </span>&#123;&#125;</div><div class="line"><span class="comment">/*output:</span></div><div class="line">test.Oranges</div><div class="line">test.Banana*/</div></pre></td></tr></table></figure>
+<p>  注意：能使用泛型方法尽量使用泛型方法，不用泛型类，静态方法不能使用泛型类的类型参数，静态方法要使用泛型参数，就只能定义为泛型方法。</p>
+</li>
+<li><p><strong>泛型的擦除</strong><br><br>擦除是泛型的核心，要理解泛型就必须理解泛型的擦除。泛型是java SE5新增的，不是java出现就有的特性，所以他需要兼容se5以前的版本，因此运行时，java所有泛型有关的东西会被擦除，无法获得任何有关泛型类型参数的信息，泛型参数会被擦除为上一个边界，如T擦除为Object,T extends Shape擦除为Shape。如果你编写下面的代码段</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> Foo&lt;T&gt; &#123;</div><div class="line">   T var;</div><div class="line"> &#125;</div><div class="line">  </div><div class="line">Foo&lt;Cat&gt; f =<span class="keyword">new</span> Foo&lt;Cat&gt;();</div></pre></td></tr></table></figure>
+<p>  站在泛型语法的角度，运行时T被Cat替换，但你必须知道T被Object替换。<br>擦除在方法体中移除了类型信息，所以在运行时的问题就是边界（对象进入和离开方法的地点），对象进入泛型方法的时候，会对传递进来的值进行额外的编译期检查（检查入参是否是我们定义的泛型类型）对象离开泛型方法时，会把它转型为我们定义的泛型类型，这样我们才能在运行时，知道真正的类型是什么。这能解决很多SE5以前编译期不能发现错误，而运行时错误的问题（比如狗在猫列表中问题）。 </p>
+</li>
+<li><p><strong>通配符</strong><br></p>
+<ul>
+<li><p>数组的协变性<br><br>数组对象可以保留有关他们包含对象的特性，比如Apple可以向上转型为Fruit，那么Apple[]也可以向上转型为Fruit[]</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jonathan</span> <span class="keyword">extends</span> <span class="title">Apple</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CovariantArrays</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Fruit[] fruit = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div><div class="line">        fruit[<span class="number">0</span>] = <span class="keyword">new</span> Apple(); <span class="comment">// OK</span></div><div class="line">        fruit[<span class="number">1</span>] = <span class="keyword">new</span> Jonathan(); <span class="comment">// OK</span></div><div class="line">        <span class="comment">// Runtime type is Apple[], not Fruit[] or Orange[]:</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// Compiler allows you to add Fruit:</span></div><div class="line">            fruit[<span class="number">2</span>] = <span class="keyword">new</span> Fruit(); <span class="comment">// ArrayStoreException</span></div><div class="line">        &#125; <span class="keyword">catch</span>(Exception e) &#123; System.out.println(e); &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// Compiler allows you to add Oranges:</span></div><div class="line">            fruit[<span class="number">3</span>] = <span class="keyword">new</span> Orange(); <span class="comment">// ArrayStoreException</span></div><div class="line">        &#125; <span class="keyword">catch</span>(Exception e) &#123; System.out.println(e); &#125;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">java.lang.ArrayStoreException: Fruit</div><div class="line">java.lang.ArrayStoreException: Orange</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  上面这个例子可以，看到,Apple[]向上转型为Fruit[]，且可以向其中放入Apple及Apple的子类，但不能向其中放入Fruit的其他派生类，放入其他派生类时，编译时会通过（正常的向上转型），但是运行时会报错，类似于狗在猫列表中问题。<br><br>  <br><br>  List就没有协变性，试试下面这段代码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NonCovariantGenerics</span> </span>&#123;</div><div class="line">    <span class="comment">// Compile Error: incompatible types:</span></div><div class="line">    List&lt;Fruit&gt; flist = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  List这样操作不能编译，原因是虽然Fruit是Apple的基类，但是List&lt;Fruit&gt;和List&lt;Apple&gt;是2个不同的容器类型，没有半毛钱关系，当然不能进行类型转换。<br><br><br>  但是，有时候你需要在两个类型间建立某种类型的向上转型，这正是通配符允许的：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericsAndCovariance</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">// Wildcards allow covariance:</span></div><div class="line">        List&lt;? extends Fruit&gt; flist = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">        <span class="comment">// Compile Error: can't add any type of object:</span></div><div class="line"><span class="comment">//         flist.add(new Apple());</span></div><div class="line"><span class="comment">//         flist.add(new Fruit());</span></div><div class="line"><span class="comment">//         flist.add(new Object());</span></div><div class="line">        flist.add(<span class="keyword">null</span>); <span class="comment">// Legal but uninteresting</span></div><div class="line">        <span class="comment">// We know that it returns at least Fruit:</span></div><div class="line">        Fruit f = flist.get(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  这样能通过，但是不能向其中添加任何非null的对象，因为? extends Fruit表示Fruit的某个派生类，看下add()方法的源码<br><img src="file:///D:\Hexo\picture\add.png" alt="">可以看到参数类型是E，但是编译器只知道是它的派生类而不清楚具体是哪个派生类，所以它一个都不接受。<br><br>  当方法参数的参数类型和泛型类型无关时，那么这个方法是安全的，可以运行的。<br><br><br>  可以通过下面这种方式向这种列表中加入元素，但是不能再加入或删除</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBounds</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Apple apple = <span class="keyword">new</span> Apple();</div><div class="line">        List&lt;? extends Fruit&gt; list = Arrays.asList(apple);</div><div class="line"><span class="comment">//        list.add(new Apple());</span></div><div class="line"><span class="comment">//        list.remove(apple);</span></div><div class="line">        System.out.println(list.get(<span class="number">0</span>));</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:test.Apple@1b6d3586 */</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>逆变</strong><br><br>上面的例子还有另一种实现方式，使用超类通配符</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperTypeWildcards</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeTo</span><span class="params">(List&lt;? <span class="keyword">super</span> Apple&gt; apples)</span> </span>&#123;</div><div class="line">        apples.add(<span class="keyword">new</span> Apple());</div><div class="line">        apples.add(<span class="keyword">new</span> Jonathan());</div><div class="line">        <span class="comment">// apples.add(new Fruit()); // Error</span></div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  ? super Apple说明类型参数是Apple的某种基类型，所以向其中添加Apple和Apple的子类是安全的，但是其他类则不安全</p>
+</li>
+<li><strong>无界通配符</strong><br><br>无界通配符看起来意味着任何事物，好像等价于原生类型，但是在JAVA SE5后他是优于原生类型的。它表示你并非是碰巧或者疏忽而使用了一个非具体的类引用，而就是选择了一个非具体的引用。<br><br><a href="https://stackoverflow.com/questions/16579891/difference-between-someclass-and-someclass" target="_blank" rel="external">无界通配符和原生类型的区别</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/17/JAVA学习笔记_RTTI/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -247,6 +247,292 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/JAVA学习笔记_泛型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The palest ink">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/17/JAVA学习笔记_泛型/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T15:51:12+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#JAVA学习笔记 泛型</p>
+<ul>
+<li><p><strong>泛型的意义</strong><br><br>1.使同一套代码可以应对多种不同的类型<br><br>2.给编译期增加类型检查，类型错误在编译期就能识别出来<br></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGenerics</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> length;</div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">        E items;</div><div class="line">        Node&lt;E&gt; next;</div><div class="line">        Node() &#123; </div><div class="line">            items = <span class="keyword">null</span>;</div><div class="line">            next = <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        Node(E item, Node&lt;E&gt; nextNode) &#123;</div><div class="line">            items = item;</div><div class="line">            next = nextNode;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">end</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> items ==<span class="keyword">null</span> &amp;&amp; next == <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Node&lt;T&gt; top = <span class="keyword">new</span> Node&lt;T&gt;();</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(T item)</span> </span>&#123;</div><div class="line">        top = <span class="keyword">new</span> Node&lt;T&gt;(item,top);</div><div class="line">        length++;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">pop</span><span class="params">()</span> </span>&#123;</div><div class="line">        T result = top.items;</div><div class="line">        <span class="keyword">if</span>(!top.end()) &#123;</div><div class="line">         top = top.next;</div><div class="line">         length--;</div><div class="line">     &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> length == <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        TestGenerics&lt;String&gt; generics = <span class="keyword">new</span> TestGenerics&lt;String&gt;();</div><div class="line">        TestGenerics&lt;Integer&gt; integerGenerics = <span class="keyword">new</span> TestGenerics&lt;Integer&gt;();</div><div class="line">        String str = <span class="string">"it is ok"</span>;</div><div class="line">        <span class="keyword">int</span>[] number = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</div><div class="line">        <span class="keyword">for</span> (String string:str.split(<span class="string">" "</span>)</div><div class="line">             ) &#123;</div><div class="line">            generics.push(string);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (Integer i:number) &#123;</div><div class="line">            integerGenerics.push(i);</div><div class="line">        &#125;</div><div class="line">        String s;</div><div class="line">        <span class="keyword">while</span>((s = generics.pop()) != <span class="keyword">null</span>) &#123;</div><div class="line">            System.out.println(s);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(!integerGenerics.isEmpty()) &#123;</div><div class="line">            System.out.println(integerGenerics.pop());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">ok</div><div class="line">is</div><div class="line">it</div><div class="line">6</div><div class="line">5</div><div class="line">4</div><div class="line">3</div><div class="line">2</div><div class="line">1*/</div></pre></td></tr></table></figure>
+<p>  这是一个泛型的简单例子，Testgenerics可以使用与String和Integer,注意，泛型不能接受基本类型作为类型参数。<br></p>
+</li>
+<li><p><strong>泛型方法</strong><br><br>上一个是泛型类的例子，还有泛型方法</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestGenericsFunc</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">String <span class="title">showName</span><span class="params">(T a)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> a.getClass().getName();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        TestGenericsFunc test = <span class="keyword">new</span> TestGenericsFunc();</div><div class="line">        System.out.println(test.showName(<span class="keyword">new</span> Oranges()));</div><div class="line">        System.out.println(test.showName(<span class="keyword">new</span> Banana()));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Oranges</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Banana</span> </span>&#123;&#125;</div><div class="line"><span class="comment">/*output:</span></div><div class="line">test.Oranges</div><div class="line">test.Banana*/</div></pre></td></tr></table></figure>
+<p>  注意：能使用泛型方法尽量使用泛型方法，不用泛型类，静态方法不能使用泛型类的类型参数，静态方法要使用泛型参数，就只能定义为泛型方法。</p>
+</li>
+<li><p><strong>泛型的擦除</strong><br><br>擦除是泛型的核心，要理解泛型就必须理解泛型的擦除。泛型是java SE5新增的，不是java出现就有的特性，所以他需要兼容se5以前的版本，因此运行时，java所有泛型有关的东西会被擦除，无法获得任何有关泛型类型参数的信息，泛型参数会被擦除为上一个边界，如T擦除为Object,T extends Shape擦除为Shape。如果你编写下面的代码段</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> Foo&lt;T&gt; &#123;</div><div class="line">   T var;</div><div class="line"> &#125;</div><div class="line">  </div><div class="line">Foo&lt;Cat&gt; f =<span class="keyword">new</span> Foo&lt;Cat&gt;();</div></pre></td></tr></table></figure>
+<p>  站在泛型语法的角度，运行时T被Cat替换，但你必须知道T被Object替换。<br>擦除在方法体中移除了类型信息，所以在运行时的问题就是边界（对象进入和离开方法的地点），对象进入泛型方法的时候，会对传递进来的值进行额外的编译期检查（检查入参是否是我们定义的泛型类型）对象离开泛型方法时，会把它转型为我们定义的泛型类型，这样我们才能在运行时，知道真正的类型是什么。这能解决很多SE5以前编译期不能发现错误，而运行时错误的问题（比如狗在猫列表中问题）。 </p>
+</li>
+<li><p><strong>通配符</strong><br></p>
+<ul>
+<li><p>数组的协变性<br><br>数组对象可以保留有关他们包含对象的特性，比如Apple可以向上转型为Fruit，那么Apple[]也可以向上转型为Fruit[]</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Jonathan</span> <span class="keyword">extends</span> <span class="title">Apple</span> </span>&#123;&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Orange</span> <span class="keyword">extends</span> <span class="title">Fruit</span> </span>&#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CovariantArrays</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Fruit[] fruit = <span class="keyword">new</span> Apple[<span class="number">10</span>];</div><div class="line">        fruit[<span class="number">0</span>] = <span class="keyword">new</span> Apple(); <span class="comment">// OK</span></div><div class="line">        fruit[<span class="number">1</span>] = <span class="keyword">new</span> Jonathan(); <span class="comment">// OK</span></div><div class="line">        <span class="comment">// Runtime type is Apple[], not Fruit[] or Orange[]:</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// Compiler allows you to add Fruit:</span></div><div class="line">            fruit[<span class="number">2</span>] = <span class="keyword">new</span> Fruit(); <span class="comment">// ArrayStoreException</span></div><div class="line">        &#125; <span class="keyword">catch</span>(Exception e) &#123; System.out.println(e); &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="comment">// Compiler allows you to add Oranges:</span></div><div class="line">            fruit[<span class="number">3</span>] = <span class="keyword">new</span> Orange(); <span class="comment">// ArrayStoreException</span></div><div class="line">        &#125; <span class="keyword">catch</span>(Exception e) &#123; System.out.println(e); &#125;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">java.lang.ArrayStoreException: Fruit</div><div class="line">java.lang.ArrayStoreException: Orange</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  上面这个例子可以，看到,Apple[]向上转型为Fruit[]，且可以向其中放入Apple及Apple的子类，但不能向其中放入Fruit的其他派生类，放入其他派生类时，编译时会通过（正常的向上转型），但是运行时会报错，类似于狗在猫列表中问题。<br><br>  <br><br>  List就没有协变性，试试下面这段代码</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NonCovariantGenerics</span> </span>&#123;</div><div class="line">    <span class="comment">// Compile Error: incompatible types:</span></div><div class="line">    List&lt;Fruit&gt; flist = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  List这样操作不能编译，原因是虽然Fruit是Apple的基类，但是List&lt;Fruit&gt;和List&lt;Apple&gt;是2个不同的容器类型，没有半毛钱关系，当然不能进行类型转换。<br><br><br>  但是，有时候你需要在两个类型间建立某种类型的向上转型，这正是通配符允许的：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericsAndCovariance</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="comment">// Wildcards allow covariance:</span></div><div class="line">        List&lt;? extends Fruit&gt; flist = <span class="keyword">new</span> ArrayList&lt;Apple&gt;();</div><div class="line">        <span class="comment">// Compile Error: can't add any type of object:</span></div><div class="line"><span class="comment">//         flist.add(new Apple());</span></div><div class="line"><span class="comment">//         flist.add(new Fruit());</span></div><div class="line"><span class="comment">//         flist.add(new Object());</span></div><div class="line">        flist.add(<span class="keyword">null</span>); <span class="comment">// Legal but uninteresting</span></div><div class="line">        <span class="comment">// We know that it returns at least Fruit:</span></div><div class="line">        Fruit f = flist.get(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  这样能通过，但是不能向其中添加任何非null的对象，因为? extends Fruit表示Fruit的某个派生类，看下add()方法的源码<br><img src="file:///D:\Hexo\picture\add.png" alt="">可以看到参数类型是E，但是编译器只知道是它的派生类而不清楚具体是哪个派生类，所以它一个都不接受。<br><br>  当方法参数的参数类型和泛型类型无关时，那么这个方法是安全的，可以运行的。<br><br><br>  可以通过下面这种方式向这种列表中加入元素，但是不能再加入或删除</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBounds</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Apple apple = <span class="keyword">new</span> Apple();</div><div class="line">        List&lt;? extends Fruit&gt; list = Arrays.asList(apple);</div><div class="line"><span class="comment">//        list.add(new Apple());</span></div><div class="line"><span class="comment">//        list.remove(apple);</span></div><div class="line">        System.out.println(list.get(<span class="number">0</span>));</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:test.Apple@1b6d3586 */</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>逆变</strong><br><br>上面的例子还有另一种实现方式，使用超类通配符</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SuperTypeWildcards</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeTo</span><span class="params">(List&lt;? <span class="keyword">super</span> Apple&gt; apples)</span> </span>&#123;</div><div class="line">        apples.add(<span class="keyword">new</span> Apple());</div><div class="line">        apples.add(<span class="keyword">new</span> Jonathan());</div><div class="line">        <span class="comment">// apples.add(new Fruit()); // Error</span></div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">///:~</span></div></pre></td></tr></table></figure>
+<p>  ? super Apple说明类型参数是Apple的某种基类型，所以向其中添加Apple和Apple的子类是安全的，但是其他类则不安全</p>
+</li>
+<li><strong>无界通配符</strong><br><br>无界通配符看起来意味着任何事物，好像等价于原生类型，但是在JAVA SE5后他是优于原生类型的。它表示你并非是碰巧或者疏忽而使用了一个非具体的类引用，而就是选择了一个非具体的引用。<br><br><a href="https://stackoverflow.com/questions/16579891/difference-between-someclass-and-someclass" target="_blank" rel="external">无界通配符和原生类型的区别</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/JAVA学习笔记_RTTI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The palest ink">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/17/JAVA学习笔记_RTTI/" itemprop="url">
+                  Untitled
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T11:27:44+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#JAVA学习笔记 RTTI和反射</p>
+<ul>
+<li><p><strong>什么是RTTI</strong><br><br>runtime type information，主要讨论如何在运行时识别对象和类的信息,多态向上转型为基类后，在运行时，能识别到对象的类型，返回对象本身的类型</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; System.out.println(<span class="keyword">this</span> + <span class="string">".draw()"</span>); &#125;</div><div class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Shape shape)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> Circle) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        print(<span class="string">"rotate..."</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Circle"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Square"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Triangle"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shapes</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Shape&gt; shapeList = Arrays.asList(</div><div class="line">                <span class="keyword">new</span> Circle(), <span class="keyword">new</span> Square(), <span class="keyword">new</span> Triangle()</div><div class="line">        );</div><div class="line">        <span class="comment">//shapelist.add(new Circle()); //error</span></div><div class="line">        <span class="keyword">for</span>(Shape shape : shapeList)</div><div class="line">            shape.draw();</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Circle.draw()</div><div class="line">Square.draw()</div><div class="line">Triangle.draw()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  在这个列子中，Circle等向上转型为Shape，Shape放入list<shape>时会向上转型为Object(泛型的擦除，运行时会把泛型类型擦除为它的第一个边界)，当运行时把他从list中取出时，会自动将结果转回Shape，再转回Circle等派生类<br></shape></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tips://shapelist.add(new Circle()); //error 不能使用Arrays.asList进行添加或删除items,</div><div class="line">因为Arrays.asList返回的是Arrays$ArrayList而不是ArrayList,</div><div class="line">Arrays$ArrayList的add()和remove()不执行其他操作默认抛出UnsupportOperationEcception</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Class对象</strong><br><br>要理解RTTI在JAVA中的工作原理，必须知道类型信息在运行时是如何表示的。<br><br>这项工作是Class对象完成的，它包含了和类有关的信息，每个类都有一个Class对象，每新建一个JAVA文件，编译器会编译出一个.class文件（可以证明向上转型后编译期并不知道子类的实际类型），JAVA类加载器会读取这个.class文件，创建一个Class对象。<br>所有的类都是第一次使用时，动态加载到JVM中的，当程序创建对一个类的静态成员的引用时，JVM就会去加载这个类（可以证明构造器是静态方法）</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRtti</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">showMsg</span><span class="params">(Shape1 shape1)</span> </span>&#123;</div><div class="line">        Class clazz = shape1.getClass();</div><div class="line">        System.out.println(shape1 <span class="keyword">instanceof</span> Circle1);</div><div class="line">        System.out.println(clazz.getCanonicalName());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Object obj = clazz.newInstance();<span class="comment">//使用newInstance，对象必须有默认构造器</span></div><div class="line">            <span class="keyword">return</span> obj;</div><div class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Circle1 circle = <span class="keyword">new</span> Circle1();</div><div class="line">        circle = (Circle1) showMsg(circle); <span class="comment">//showMsg()返回一个Object引用，它指向Toy对象，需要手动将他向下转型为Circle1后才能使用</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape1</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"it is shape"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle1</span> <span class="keyword">extends</span> <span class="title">Shape1</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"it is circle"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">true</div><div class="line">test.Circle1</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>反射</strong><br><br>如果不知道某个对象的确切类型，通过RRTI可以解决，但是有一个限制，这个类型编译时必须已知，这样RTTI才能识别到它。<br><br><br><br>Class类和java.lang.reflect类库一起对反射的概念进行了支持，该类库包含Field,Method,Constructor,这些类型的对象是由JVM在运行时创建的,当通过反射与位置对象打交道时，JVM只是简单的检查该对象属于哪个类，然后去加载那个类的Class对象，因此，RTTI和反射的区别在于，对RTTI来说，编译器在编译的时候打开和检查.class文件，而对于反射来说，在编译器.class文件是不可获取的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestReflect</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ReflectClass reflectClass = <span class="keyword">new</span> ReflectClass();</div><div class="line">        Class&lt;?&gt; clazz = reflectClass.getClass();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Field field = clazz.getDeclaredField(<span class="string">"i"</span>);</div><div class="line"><span class="comment">//            Field field2 = clazz.getField("j"); //error ,NoSuchFieldException</span></div><div class="line">            Field field2 = clazz.getDeclaredField(<span class="string">"j"</span>);</div><div class="line">            field2.setAccessible(<span class="keyword">true</span>); <span class="comment">//设置private等变量可访问，否则会抛出IllegalAccessException</span></div><div class="line"></div><div class="line">            Method[] methods = clazz.getMethods(); <span class="comment">//不能获取到private的方法</span></div><div class="line">            <span class="keyword">for</span> (Method method:</div><div class="line">                 methods) &#123;</div><div class="line">                System.out.println(method);</div><div class="line">            &#125;</div><div class="line">            Method method2 = clazz.getDeclaredMethod(<span class="string">"func2"</span>);</div><div class="line">            method2.setAccessible(<span class="keyword">true</span>); <span class="comment">//设置private等变量可访问，否则会抛出IllegalAccessException</span></div><div class="line">            method2.invoke(reflectClass);</div><div class="line"></div><div class="line">            Method method3 = clazz.getDeclaredMethod(<span class="string">"func3"</span>, <span class="keyword">int</span>.class);</div><div class="line">            method3.invoke(reflectClass,<span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//            Constructor constructor = clazz.getConstructor();</span></div><div class="line"><span class="comment">//            constructor.newInstance();   //getConstructor只能取到public的构造方法，其他权限的应该使用getDeclaredConstructor</span></div><div class="line"></div><div class="line">            Constructor constructor = clazz.getDeclaredConstructor(<span class="keyword">int</span>.class);</div><div class="line">            ReflectClass class2 = (ReflectClass) constructor.newInstance(<span class="number">9</span>);</div><div class="line"></div><div class="line">            System.out.println(field.getInt(reflectClass));</div><div class="line">            System.out.println(field2.getInt(reflectClass));</div><div class="line">            System.out.println(class2.i);</div><div class="line">            System.out.println(class2.getJ());</div><div class="line">        &#125; <span class="keyword">catch</span> (NoSuchFieldException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReflectClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> j;</div><div class="line"></div><div class="line">    ReflectClass() &#123;System.out.println(<span class="string">"default constructor"</span>);&#125;</div><div class="line"></div><div class="line">    ReflectClass(<span class="keyword">int</span> m) &#123;</div><div class="line">        j = m;</div><div class="line">        System.out.println(<span class="string">"params constructor"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"invoke func1()"</span>);&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"invoke func2()"</span>);&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        i = n;</div><div class="line">        System.out.println(<span class="string">"invoke func3()"</span>);&#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getJ</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> j;</div><div class="line">        &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">default constructor</div><div class="line">public void test.ReflectClass.func3(int)</div><div class="line">public int test.ReflectClass.getJ()</div><div class="line">public void test.ReflectClass.func1()</div><div class="line">public final void java.lang.Object.wait() throws java.lang.InterruptedException</div><div class="line">public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException</div><div class="line">public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException</div><div class="line">public boolean java.lang.Object.equals(java.lang.Object)</div><div class="line">public java.lang.String java.lang.Object.toString()</div><div class="line">public native int java.lang.Object.hashCode()</div><div class="line">public final native java.lang.Class java.lang.Object.getClass()</div><div class="line">public final native void java.lang.Object.notify()</div><div class="line">public final native void java.lang.Object.notifyAll()</div><div class="line">invoke func2()</div><div class="line">invoke func3()</div><div class="line">params constructor</div><div class="line">5</div><div class="line">*/</div></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/26/JAVA学习笔记_多态/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -270,7 +556,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/26/JAVA学习笔记_多态/" itemprop="url">
-                  Unbenannt
+                  Untitled
                 </a>
               
             
@@ -284,7 +570,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-26T23:48:19+08:00">
                 2017-03-26
@@ -325,23 +611,23 @@
         
           
             <h1 id="JAVA学习笔记-多态"><a href="#JAVA学习笔记-多态" class="headerlink" title="JAVA学习笔记 多态"></a>JAVA学习笔记 多态</h1><ul>
-<li><p><strong>忘记对象类型</strong><br>我们知道JAVA中除了static方法和final方法（private属于final）属于前期绑定，其他方法都属于后期绑定，所以当我们将一个对象向上转型为基类后，调用基类的方法，JAVA会在运行时自动与子类的这个方法绑定（子类必须存在这个方法，否则会报错）。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">ForgetClassType.java</div><div class="line">public class Shape &#123;</div><div class="line">	public int size = 5;</div><div class="line">	private void priPrint() &#123;</div><div class="line">		System.out.println(&quot;I am private Shape&quot;);</div><div class="line">	&#125;</div><div class="line">    public void print() &#123;</div><div class="line">        System.out.println(&quot;I am shape&quot;);</div><div class="line">    &#125;</div><div class="line">	public static void print(Shape shape) &#123;</div><div class="line">		// 打印域</div><div class="line">		System.out.println(shape.size);</div><div class="line">		// 打印公有方法</div><div class="line">		shape.print();</div><div class="line">		// 打印私有方法</div><div class="line">		shape.priPrint();</div><div class="line">	&#125;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">        Circle circle = new Circle();</div><div class="line">        print(circle);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">class Circle extends Shape &#123;</div><div class="line">	public int size = 6;</div><div class="line">	public void priPrint() &#123;</div><div class="line">		System.out.println(&quot;I am priavte Circle&quot;);</div><div class="line">	&#125;</div><div class="line">    public void print() &#123;</div><div class="line">        System.out.println(&quot;I am circle&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">***</div><div class="line">结果打印 I am Circle</div></pre></td></tr></table></figure>
+<li><p><strong>忘记对象类型</strong><br><br>我们知道JAVA中除了static方法和final方法（private属于final）属于前期绑定，其他方法都属于后期绑定，所以当我们将一个对象向上转型为基类后，调用基类的方法，JAVA会在运行时自动与子类的这个方法绑定（子类必须存在这个方法，否则会报错）。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> size = <span class="number">5</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">priPrint</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I am private Shape"</span>);</div><div class="line">	&#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">           System.out.println(<span class="string">"I am shape"</span>);</div><div class="line">        &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(Shape shape)</span> </span>&#123;</div><div class="line">		<span class="comment">// 打印域</span></div><div class="line">		System.out.println(shape.size);</div><div class="line">		<span class="comment">// 打印公有方法</span></div><div class="line">		shape.print();</div><div class="line">		<span class="comment">// 打印私有方法</span></div><div class="line">		shape.priPrint();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Circle circle = <span class="keyword">new</span> Circle();</div><div class="line">        print(circle);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">           <span class="keyword">public</span> <span class="keyword">int</span> size = <span class="number">6</span>;</div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">priPrint</span><span class="params">()</span> </span>&#123;</div><div class="line">               System.out.println(<span class="string">"I am priavte Circle"</span>);</div><div class="line">           &#125;</div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">               System.out.println(<span class="string">"I am circle"</span>);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line"><span class="comment">/*output:</span></div><div class="line">    结果打印 </div><div class="line"> 	  5</div><div class="line">     I am circle</div><div class="line">     I am private Shape*/</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>我们可以有很多类继承自Shape，添加新的子类后我们的基类不用做改动，子类一样能调用他的方法，这正是我们期待多态所具有的特性，我们所作的代码修改，不会对程序中其他不应受到影响的部分产生破坏，换句话说，多态是一项让程序员“将改变的事物与未变的事物分离开来的重要技术。”</p>
 <ul>
-<li><p><strong>多态的缺陷</strong><br>见识到多态的强大后，我们可能会觉得所有事物都可以多态的发生，但事实并不是这样。</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">	Shape.java</div><div class="line">	public class Shape &#123;</div><div class="line">		public int size = 5;</div><div class="line">		private void priPrint() &#123;</div><div class="line">			System.out.println(&quot;I am private Shape&quot;);</div><div class="line">		&#125;</div><div class="line">	    public void print() &#123;</div><div class="line">	        System.out.println(&quot;I am shape&quot;);</div><div class="line">	    &#125;</div><div class="line">		public static void print(Shape shape) &#123;</div><div class="line">			// 打印域</div><div class="line">			System.out.println(shape.size);</div><div class="line">			// 打印公有方法</div><div class="line">			shape.print();</div><div class="line">			// 打印私有方法</div><div class="line">			shape.priPrint();</div><div class="line">		&#125;</div><div class="line">		public static void main(String[] args) &#123;</div><div class="line">	        Circle circle = new Circle();</div><div class="line">	        print(circle);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	class Circle extends Shape &#123;</div><div class="line">		public int size = 6;</div><div class="line">		public void priPrint() &#123;</div><div class="line">			System.out.println(&quot;I am priavte Circle&quot;);</div><div class="line">		&#125;</div><div class="line">	    public void print() &#123;</div><div class="line">	        System.out.println(&quot;I am circle&quot;);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	***打印结果</div><div class="line">	5</div><div class="line">I am circle</div><div class="line">I am private Shape</div></pre></td></tr></table></figure>
+<li><p><strong>多态的缺陷</strong><br><br>见识到多态的强大后，我们可能会觉得所有事物都可以多态的发生，但事实并不是这样。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> size = <span class="number">5</span>;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">priPrint</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I am private Shape"</span>);</div><div class="line">	&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"I am shape"</span>);</div><div class="line">    &#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(Shape shape)</span> </span>&#123;</div><div class="line">		<span class="comment">// 打印域</span></div><div class="line">		System.out.println(shape.size);</div><div class="line">		<span class="comment">// 打印公有方法</span></div><div class="line">		shape.print();</div><div class="line">		<span class="comment">// 打印私有方法</span></div><div class="line">		shape.priPrint();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Circle circle = <span class="keyword">new</span> Circle();</div><div class="line">        print(circle);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">int</span> size = <span class="number">6</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">priPrint</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"I am priavte Circle"</span>);</div><div class="line">	&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"I am circle"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/****打印结果</span></div><div class="line">      	   5</div><div class="line">          I am circle</div><div class="line">          I am private Shape*/</div></pre></td></tr></table></figure>
 <p> 从上面代码可以分析出当访问域时，就会在编译的时候进行解析。当访问静态方法时，会进行前期绑定。因此只有普通的方法具有多态性。</p>
 </li>
-<li><p><strong>构造器和多态</strong><br>构造器和普通的方法不一样，构造器虽然不具有多态性（构造器是隐式的static方法），但是我们也需要搞清楚构造器怎么通过多态在复杂的层次结构中运作。<br>初始化一个对象调用构造器的顺序：<br> 1.将对象的所有成员变量赋值为0或者Null.<br> 2.调用基类的构造器（循环1-2步骤，直到基类为Object）<br> 3.按照声明顺序对成员变量进行赋值<br> 4.调用自身构造器</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class InitTest &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Shape shape = new Ellipse();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">class Shape &#123;</div><div class="line">    int size = 5;</div><div class="line">    Shape() &#123;</div><div class="line">        print();</div><div class="line">    &#125;</div><div class="line">    public void print() &#123;</div><div class="line">        System.out.println(size);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">class Ellipse extends Shape&#123;</div><div class="line">    int size = 6;</div><div class="line">    Ellipse() &#123;</div><div class="line">        print();</div><div class="line">    &#125;</div><div class="line">    public void print() &#123;</div><div class="line">        System.out.println(size);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">***</div><div class="line">打印结果：</div><div class="line">0</div><div class="line">6</div></pre></td></tr></table></figure>
+<li><p><strong>构造器和多态</strong><br><br>构造器和普通的方法不一样，构造器虽然不具有多态性（构造器是隐式的static方法），但是我们也需要搞清楚构造器怎么通过多态在复杂的层次结构中运作。<br>初始化一个对象调用构造器的顺序：<br> 1.将对象的所有成员变量赋值为0或者Null(加载class文件后，JVM在准备阶段为static变量赋值).<br> 2.调用基类的构造器（循环1-2步骤，直到基类为Object）<br> 3.按照声明顺序对成员变量进行赋值<br> 4.调用自身构造器</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InitTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Shape shape = <span class="keyword">new</span> Ellipse();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> size = <span class="number">5</span>;</div><div class="line">    Shape() &#123;</div><div class="line">        print();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(size);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ellipse</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> size = <span class="number">6</span>;</div><div class="line">    Ellipse() &#123;</div><div class="line">        print();</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(size);</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*</span></div><div class="line">   打印结果：</div><div class="line">       0</div><div class="line">       6*/</div></pre></td></tr></table></figure>
 <p> 上段代码打印结果为0，new一个Ellipse对象向上转型为Shape类型，先将子类的size初始化为0，然后调用基类的构造器，基类的构造器调用print()方法，由于后期绑定，所以调用的是子类的print()方法，这时还没对子类的成员变量进行赋值，所以第一个打印0，后调用子类构造器，这时已经对成员变量进行赋值了，所以打印的是6.</p>
 </li>
 </ul>
 <ul>
-<li><strong>合理使用继承</strong><br>1.使用继承必须符合面向对象的原则，遵循has - a使用组合，is - a 使用继承原则。<br>2.对象向上转型会丢失集体的类型信息（向上转型后不能调用基类没有而子类有的方法），这种情况就需要向下转型，但是向下转型是不安全的，因为我们不知道子类的具体类型，向下转型在进入运行期时会对转型进行检查，如果不是我们希望的类型，那么程序会抛出ClassCastException（类转型异常），详见RTTI(RunTime Type Information)</li>
+<li><strong>合理使用继承</strong><br><br>1.使用继承必须符合面向对象的原则，遵循has - a使用组合，is - a 使用继承原则。<br>2.对象向上转型会丢失集体的类型信息（向上转型后不能调用基类没有而子类有的方法），这种情况就需要向下转型，但是向下转型是不安全的，因为我们不知道子类的具体类型，向下转型在进入运行期时会对转型进行检查，如果不是我们希望的类型，那么程序会抛出ClassCastException（类转型异常），详见RTTI(RunTime Type Information)</li>
 </ul>
 
           
@@ -422,8 +708,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -477,7 +763,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

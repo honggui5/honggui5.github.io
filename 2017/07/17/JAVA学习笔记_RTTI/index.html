@@ -1,0 +1,653 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="#JAVA学习笔记 RTTI和反射
+
+什么是RTTIruntime type information，主要讨论如何在运行时识别对象和类的信息,多态向上转型为基类后，在运行时，能识别到对象的类型，返回对象本身的类型
+  123456789101112131415161718192021222324252627282930313233343536373839abstract class Shape &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The palest ink">
+<meta property="og:url" content="http://yoursite.com/2017/07/17/JAVA学习笔记_RTTI/index.html">
+<meta property="og:site_name" content="The palest ink">
+<meta property="og:description" content="#JAVA学习笔记 RTTI和反射
+
+什么是RTTIruntime type information，主要讨论如何在运行时识别对象和类的信息,多态向上转型为基类后，在运行时，能识别到对象的类型，返回对象本身的类型
+  123456789101112131415161718192021222324252627282930313233343536373839abstract class Shape &amp;">
+<meta property="og:updated_time" content="2017-07-17T07:48:09.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The palest ink">
+<meta name="twitter:description" content="#JAVA学习笔记 RTTI和反射
+
+什么是RTTIruntime type information，主要讨论如何在运行时识别对象和类的信息,多态向上转型为基类后，在运行时，能识别到对象的类型，返回对象本身的类型
+  123456789101112131415161718192021222324252627282930313233343536373839abstract class Shape &amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/17/JAVA学习笔记_RTTI/"/>
+
+
+
+
+
+  <title>  | The palest ink </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The palest ink</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/17/JAVA学习笔记_RTTI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The palest ink">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-17T11:27:44+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#JAVA学习笔记 RTTI和反射</p>
+<ul>
+<li><p><strong>什么是RTTI</strong><br><br>runtime type information，主要讨论如何在运行时识别对象和类的信息,多态向上转型为基类后，在运行时，能识别到对象的类型，返回对象本身的类型</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123; System.out.println(<span class="keyword">this</span> + <span class="string">".draw()"</span>); &#125;</div><div class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span><span class="params">(Shape shape)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> Circle) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        print(<span class="string">"rotate..."</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Circle"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Square"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">"Triangle"</span>; &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shapes</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Shape&gt; shapeList = Arrays.asList(</div><div class="line">                <span class="keyword">new</span> Circle(), <span class="keyword">new</span> Square(), <span class="keyword">new</span> Triangle()</div><div class="line">        );</div><div class="line">        <span class="comment">//shapelist.add(new Circle()); //error</span></div><div class="line">        <span class="keyword">for</span>(Shape shape : shapeList)</div><div class="line">            shape.draw();</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Circle.draw()</div><div class="line">Square.draw()</div><div class="line">Triangle.draw()</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  在这个列子中，Circle等向上转型为Shape，Shape放入list<shape>时会向上转型为Object(泛型的擦除，运行时会把泛型类型擦除为它的第一个边界)，当运行时把他从list中取出时，会自动将结果转回Shape，再转回Circle等派生类<br></shape></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tips://shapelist.add(new Circle()); //error 不能使用Arrays.asList进行添加或删除items,</div><div class="line">因为Arrays.asList返回的是Arrays$ArrayList而不是ArrayList,</div><div class="line">Arrays$ArrayList的add()和remove()不执行其他操作默认抛出UnsupportOperationEcception</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Class对象</strong><br><br>要理解RTTI在JAVA中的工作原理，必须知道类型信息在运行时是如何表示的。<br><br>这项工作是Class对象完成的，它包含了和类有关的信息，每个类都有一个Class对象，每新建一个JAVA文件，编译器会编译出一个.class文件（可以证明向上转型后编译期并不知道子类的实际类型），JAVA类加载器会读取这个.class文件，创建一个Class对象。<br>所有的类都是第一次使用时，动态加载到JVM中的，当程序创建对一个类的静态成员的引用时，JVM就会去加载这个类（可以证明构造器是静态方法）</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRtti</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">showMsg</span><span class="params">(Shape1 shape1)</span> </span>&#123;</div><div class="line">        Class clazz = shape1.getClass();</div><div class="line">        System.out.println(shape1 <span class="keyword">instanceof</span> Circle1);</div><div class="line">        System.out.println(clazz.getCanonicalName());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Object obj = clazz.newInstance();<span class="comment">//使用newInstance，对象必须有默认构造器</span></div><div class="line">            <span class="keyword">return</span> obj;</div><div class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Circle1 circle = <span class="keyword">new</span> Circle1();</div><div class="line">        circle = (Circle1) showMsg(circle); <span class="comment">//showMsg()返回一个Object引用，它指向Toy对象，需要手动将他向下转型为Circle1后才能使用</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape1</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"it is shape"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle1</span> <span class="keyword">extends</span> <span class="title">Shape1</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"it is circle"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">true</div><div class="line">test.Circle1</div><div class="line">*/</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>反射</strong><br><br>如果不知道某个对象的确切类型，通过RRTI可以解决，但是有一个限制，这个类型编译时必须已知，这样RTTI才能识别到它。<br><br><br><br>Class类和java.lang.reflect类库一起对反射的概念进行了支持，该类库包含Field,Method,Constructor,这些类型的对象是由JVM在运行时创建的,当通过反射与位置对象打交道时，JVM只是简单的检查该对象属于哪个类，然后去加载那个类的Class对象，因此，RTTI和反射的区别在于，对RTTI来说，编译器在编译的时候打开和检查.class文件，而对于反射来说，在编译器.class文件是不可获取的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestReflect</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        ReflectClass reflectClass = <span class="keyword">new</span> ReflectClass();</div><div class="line">        Class&lt;?&gt; clazz = reflectClass.getClass();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Field field = clazz.getDeclaredField(<span class="string">"i"</span>);</div><div class="line"><span class="comment">//            Field field2 = clazz.getField("j"); //error ,NoSuchFieldException</span></div><div class="line">            Field field2 = clazz.getDeclaredField(<span class="string">"j"</span>);</div><div class="line">            field2.setAccessible(<span class="keyword">true</span>); <span class="comment">//设置private等变量可访问，否则会抛出IllegalAccessException</span></div><div class="line"></div><div class="line">            Method[] methods = clazz.getMethods(); <span class="comment">//不能获取到private的方法</span></div><div class="line">            <span class="keyword">for</span> (Method method:</div><div class="line">                 methods) &#123;</div><div class="line">                System.out.println(method);</div><div class="line">            &#125;</div><div class="line">            Method method2 = clazz.getDeclaredMethod(<span class="string">"func2"</span>);</div><div class="line">            method2.setAccessible(<span class="keyword">true</span>); <span class="comment">//设置private等变量可访问，否则会抛出IllegalAccessException</span></div><div class="line">            method2.invoke(reflectClass);</div><div class="line"></div><div class="line">            Method method3 = clazz.getDeclaredMethod(<span class="string">"func3"</span>, <span class="keyword">int</span>.class);</div><div class="line">            method3.invoke(reflectClass,<span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//            Constructor constructor = clazz.getConstructor();</span></div><div class="line"><span class="comment">//            constructor.newInstance();   //getConstructor只能取到public的构造方法，其他权限的应该使用getDeclaredConstructor</span></div><div class="line"></div><div class="line">            Constructor constructor = clazz.getDeclaredConstructor(<span class="keyword">int</span>.class);</div><div class="line">            ReflectClass class2 = (ReflectClass) constructor.newInstance(<span class="number">9</span>);</div><div class="line"></div><div class="line">            System.out.println(field.getInt(reflectClass));</div><div class="line">            System.out.println(field2.getInt(reflectClass));</div><div class="line">            System.out.println(class2.i);</div><div class="line">            System.out.println(class2.getJ());</div><div class="line">        &#125; <span class="keyword">catch</span> (NoSuchFieldException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReflectClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> j;</div><div class="line"></div><div class="line">    ReflectClass() &#123;System.out.println(<span class="string">"default constructor"</span>);&#125;</div><div class="line"></div><div class="line">    ReflectClass(<span class="keyword">int</span> m) &#123;</div><div class="line">        j = m;</div><div class="line">        System.out.println(<span class="string">"params constructor"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"invoke func1()"</span>);&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"invoke func2()"</span>);&#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        i = n;</div><div class="line">        System.out.println(<span class="string">"invoke func3()"</span>);&#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getJ</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> j;</div><div class="line">        &#125;</div><div class="line">&#125;<span class="comment">/*output:</span></div><div class="line">default constructor</div><div class="line">public void test.ReflectClass.func3(int)</div><div class="line">public int test.ReflectClass.getJ()</div><div class="line">public void test.ReflectClass.func1()</div><div class="line">public final void java.lang.Object.wait() throws java.lang.InterruptedException</div><div class="line">public final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException</div><div class="line">public final native void java.lang.Object.wait(long) throws java.lang.InterruptedException</div><div class="line">public boolean java.lang.Object.equals(java.lang.Object)</div><div class="line">public java.lang.String java.lang.Object.toString()</div><div class="line">public native int java.lang.Object.hashCode()</div><div class="line">public final native java.lang.Class java.lang.Object.getClass()</div><div class="line">public final native void java.lang.Object.notify()</div><div class="line">public final native void java.lang.Object.notifyAll()</div><div class="line">invoke func2()</div><div class="line">invoke func3()</div><div class="line">params constructor</div><div class="line">5</div><div class="line">*/</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/JAVA学习笔记_多态/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/17/JAVA学习笔记_泛型/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
