@@ -1,0 +1,666 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="#JAVA学习笔记 数组
+
+介绍数组是效率最高的存储和访问对象引用序列的方式，但是它的大小被固定，数组要要与泛型前的容器，因为JAVA SE5以前，容器都是把对象向上转型为Object对象处理的。
+  数组标识符是一个引用，指向堆中的一个真实对象，而不是基本类型。
+
+一维数组和多维数组
+  12345678910111213141516/*一维数组*/int[] array1 = &amp;#123;1,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The palest ink">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/JAVA学习笔记_数组/index.html">
+<meta property="og:site_name" content="The palest ink">
+<meta property="og:description" content="#JAVA学习笔记 数组
+
+介绍数组是效率最高的存储和访问对象引用序列的方式，但是它的大小被固定，数组要要与泛型前的容器，因为JAVA SE5以前，容器都是把对象向上转型为Object对象处理的。
+  数组标识符是一个引用，指向堆中的一个真实对象，而不是基本类型。
+
+一维数组和多维数组
+  12345678910111213141516/*一维数组*/int[] array1 = &amp;#123;1,">
+<meta property="og:updated_time" content="2017-07-18T04:22:38.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The palest ink">
+<meta name="twitter:description" content="#JAVA学习笔记 数组
+
+介绍数组是效率最高的存储和访问对象引用序列的方式，但是它的大小被固定，数组要要与泛型前的容器，因为JAVA SE5以前，容器都是把对象向上转型为Object对象处理的。
+  数组标识符是一个引用，指向堆中的一个真实对象，而不是基本类型。
+
+一维数组和多维数组
+  12345678910111213141516/*一维数组*/int[] array1 = &amp;#123;1,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/18/JAVA学习笔记_数组/"/>
+
+
+
+
+
+  <title>  | The palest ink </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">The palest ink</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/JAVA学习笔记_数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The palest ink">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T09:23:15+08:00">
+                2017-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#JAVA学习笔记 数组</p>
+<ul>
+<li><p><strong>介绍</strong><br><br>数组是效率最高的存储和访问对象引用序列的方式，但是它的大小被固定，数组要要与泛型前的容器，因为JAVA SE5以前，容器都是把对象向上转型为Object对象处理的。</p>
+<p>  数组标识符是一个引用，指向堆中的一个真实对象，而不是基本类型。<br></p>
+</li>
+<li><p><strong>一维数组和多维数组</strong><br></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*一维数组*/</span></div><div class="line"><span class="keyword">int</span>[] array1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</div><div class="line">String[] array2 = <span class="keyword">new</span> String[<span class="number">10</span>]</div><div class="line">  </div><div class="line"><span class="comment">/*多维数组*/</span></div><div class="line"><span class="keyword">double</span>[][] array3 = &#123;</div><div class="line">                &#123;<span class="number">2.1</span>,<span class="number">2.2</span>,<span class="number">2.3</span>&#125;,</div><div class="line">                &#123;<span class="number">3.3</span>,<span class="number">4.3</span>,<span class="number">5.6</span>&#125;</div><div class="line">        &#125;;</div><div class="line">  </div><div class="line"><span class="comment">/*粗糙数组(每个向量可以有任意长度)*/</span></div><div class="line"><span class="keyword">int</span>[][] array4 = &#123;</div><div class="line">                &#123;<span class="number">1</span>&#125;,</div><div class="line">                &#123;<span class="number">2</span>,<span class="number">3</span>&#125;,</div><div class="line">                &#123;<span class="number">4</span>,<span class="number">5</span>&#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Arrays的实用功能</strong><br><br>  System.arraycopy(Object src, int srcPos, Object dest, int destPos,int length)（本地方法，不是用java实现）</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CopyingArrays</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] i = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">7</span>];</div><div class="line">        <span class="keyword">int</span>[] j = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line">        Arrays.fill(i, <span class="number">47</span>);</div><div class="line">        Arrays.fill(j, <span class="number">99</span>);</div><div class="line">        print(<span class="string">"i = "</span> + Arrays.toString(i));</div><div class="line">        print(<span class="string">"j = "</span> + Arrays.toString(j));</div><div class="line">        System.arraycopy(i, <span class="number">0</span>, j, <span class="number">0</span>, i.length);</div><div class="line">        print(<span class="string">"j = "</span> + Arrays.toString(j));</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">i = [47, 47, 47, 47, 47, 47, 47]</div><div class="line">j = [99, 99, 99, 99, 99, 99, 99, 99, 99, 99]</div><div class="line">j = [47, 47, 47, 47, 47, 47, 47, 99, 99, 99]*/</div></pre></td></tr></table></figure>
+<p>  arraycopy是JAVA标准类库提供，需要的参数有源数组、起始偏移量、目的数组、目的数组编译量、赋值的个数，注意：如果复制的是对象数组，那么只会复制引用，而不是复制对象的本身，这被称作浅复制。<br><br><br>  Arrays.equal(Object[] a, Object[] a2)</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComparingArrays</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span>[] a1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line">        <span class="keyword">int</span>[] a2 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line">        Arrays.fill(a1, <span class="number">47</span>);</div><div class="line">        Arrays.fill(a2, <span class="number">47</span>);</div><div class="line">        print(Arrays.equals(a1, a2));</div><div class="line">        a2[<span class="number">3</span>] = <span class="number">11</span>;</div><div class="line">        print(Arrays.equals(a1, a2));</div><div class="line">        String[] s1 = <span class="keyword">new</span> String[<span class="number">4</span>];</div><div class="line">        Arrays.fill(s1, <span class="string">"Hi"</span>);</div><div class="line">        String[] s2 = &#123; <span class="keyword">new</span> String(<span class="string">"Hi"</span>), <span class="keyword">new</span> String(<span class="string">"Hi"</span>),</div><div class="line">                <span class="keyword">new</span> String(<span class="string">"Hi"</span>), <span class="keyword">new</span> String(<span class="string">"Hi"</span>) &#125;;</div><div class="line">        print(Arrays.equals(s1, s2));</div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">true</div><div class="line">false</div><div class="line">true</div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  多维数组使用Arrays.deepEquals()进行比较，与一维数组类似。<br><br><br>  Arrays.sort(Object[] a)</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Num</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Num</span>&gt;</span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> i;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Num</span><span class="params">(<span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">        i = j;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> String.valueOf(i);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Num o)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.i &gt; o.i ? <span class="number">1</span>:(<span class="keyword">this</span>.i == o.i ? <span class="number">0</span>:-<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSorting</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span>  <span class="title">printArray</span><span class="params">(T[] array)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (T obj:</div><div class="line">             array) &#123;</div><div class="line">            System.out.print(obj+<span class="string">" "</span>);</div><div class="line">        &#125;</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Integer[] is = &#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">8</span>&#125;;</div><div class="line">        String[] ss = &#123;<span class="string">"qwe"</span>,<span class="string">"asd"</span>,<span class="string">"zxce"</span>&#125;;</div><div class="line">        Num[] os = &#123;<span class="keyword">new</span> Num(<span class="number">7</span>),<span class="keyword">new</span> Num(<span class="number">1</span>),<span class="keyword">new</span> Num(<span class="number">2</span>)&#125;;</div><div class="line">        System.out.println(<span class="string">"Bofore Sort: "</span>);</div><div class="line">        printArray(is);</div><div class="line">        printArray(ss);</div><div class="line">        printArray(os);</div><div class="line">        Arrays.sort(is);</div><div class="line">        Arrays.sort(ss);</div><div class="line">        Arrays.sort(os);</div><div class="line">        System.out.println(<span class="string">"After Sort: "</span>);</div><div class="line">        printArray(is);</div><div class="line">        printArray(ss);</div><div class="line">        printArray(os);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125; <span class="comment">/* Output:</span></div><div class="line">Bofore Sort: </div><div class="line">1 4 3 5 7 9 8 </div><div class="line">qwe asd zxce </div><div class="line">7 1 2 </div><div class="line">After Sort: </div><div class="line">1 3 4 5 7 8 9 </div><div class="line">asd qwe zxce </div><div class="line">1 2 7 </div><div class="line">*/<span class="comment">//:~</span></div></pre></td></tr></table></figure>
+<p>  基本类型和String类型的数组，Arrays支持进行排序，如果要对对象数组进行排序，那么需要排序得对象需要实现ComParable接口，否则会抛出ClassCastException。<br><br><br>  &lt;T&gt; Arrays.asList(T… a)<br></p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAsList</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">89</span>);</div><div class="line"><span class="comment">//        list.add(100);error UnsupportedOperationException</span></div><div class="line"><span class="comment">//        list.remove(4);error UnsupportedOperationException</span></div><div class="line">        System.out.println(list.toString());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  注意：Arrays.asList()返回的List不能增加或者删除元素，因为Arrays.asList()返回的是Arrays$ArrayList,它的add()和remove()方法没有增删而是直接抛出异常的。</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">    &#125;</div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>  当然Arrays$ArrayList也不能转型为java.util.ArrayList。<br><br><br>  Arrays.binarySearch(Object[] a, Object key)<br><br>  这个方法需要传入需要查找的数据和需要查找的值，找到第一个值后返回索引，如果没找到返回负数。<br><br><br>  Arrays.toString(Object[] a)<br><br>  返回String类型的数组</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/17/JAVA学习笔记_泛型/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
